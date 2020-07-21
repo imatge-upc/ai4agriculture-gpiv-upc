@@ -59,8 +59,6 @@ for name in images_list:
 
     if ids is not None:
         for ii,id in enumerate(ids):
-            print (id,frame_markers.shape)
-
             frame_markers = cv2.putText(frame_markers, str(id), (w-500, 130+ii*130), cv2.FONT_HERSHEY_SIMPLEX, 4, (0,0,255), 12)
 
     cv2.imwrite('{}_out.jpg'.format(os.path.splitext(name)[0]), frame_markers)
