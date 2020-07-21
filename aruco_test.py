@@ -53,7 +53,7 @@ for name in images_list:
     corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, cdic, parameters=parameters)
     #rvec, tvec,_ = aruco.estimatePoseSingleMarkers(corners[0], 0.08, mtx, dist)
 
-    print (ids)
+    print ('Markers found in image: ', ids)
     
     frame_markers = aruco.drawDetectedMarkers(ima, corners, ids)
 
