@@ -16,10 +16,8 @@ Place a pole with a marker in front of each tree, taking care so that the leaves
 Place a marker (code 0 or 511) flat on the ground next to the pole to indicate the tree side (Front or Back). The vertical
 distance between the markers should be constant for all trees.
 
-'minimal_example.py' shows how to read the codes in an image and rename this image acoording to these codes.
+- 'minimal_example.py' shows how to read the codes in an image and rename this image acoording to these codes.
 (Note that images/test_image.jpg is not correct as the code to indicate the orientation is not 0 or 511. I will change that ASAP)
-
-
 - 'aruco_test-py' reads the markers and prints the codes over the image.
 - 'create_dictionary.py' and 'generate_codes.py' can be used to create custom dictionaries and set of codes. For instance, if more than 
 512 different markers are needed
