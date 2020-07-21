@@ -1,6 +1,8 @@
 import cv2
 import sys
 import os
+from cv2 import aruco
+import pickle
 
 ''' 
 This script reads an image with two Aruco markers: one to identify the tree and the second one to identify the orientation.
@@ -12,7 +14,8 @@ name = 'images/test_image.jpg'
 parameters =  aruco.DetectorParameters_create()
 
 # Load custom dictionary
-dict_file = 'CUSTOM_ARUCO_MARKERS_DICT_8x8_1024.pkl'
+dict_file = 'data/CUSTOM_ARUCO_MARKERS_DICT_8x8_512.pkl'
+
 if os.path.isfile(dict_file):
     print ('Loading existing dictionary')
     with open(dict_file, 'rb') as fd:
@@ -42,18 +45,24 @@ ids.sort()
 orientation = None
 code = -1
 
-if ids[0] == 0:
+if ids[0][0] == 0:
     orientation = 'Front'
-    code = ids[1]
-if ids[1] == 511:
+    code = ids[1][0]
+if ids[1][0] == 511:
     if orientation is not None:
         print ('ERROR: Front and Back markers detected! Only one should appear in the image')
         sys.exit()
     else:
         orientation = 'Back'
-        code = ids[0]
+        code = ids[0][0]
 
-if code == 0 or code == 511:
+print (code,orientation)
+
+if orientation is None:
+    print ('ERROR: Wrong orientation. Valid orientation codes are 0 or 511')
+    sys.exit()
+    
+if code == -1 or code == 0 or code == 511:
     print ('ERROR: Wrong code. Valid codes are in the range [1-510]')
     sys.exit()
 
